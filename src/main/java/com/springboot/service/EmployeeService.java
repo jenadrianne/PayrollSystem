@@ -6,9 +6,10 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.entities.Employee;
 import com.springboot.repository.custom.EmployeeRepository;
 
-import model.Employee;
+
 
 @Service("EmployeeService")
 public class EmployeeService {

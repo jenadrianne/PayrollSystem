@@ -5,7 +5,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import model.Employee;
+import com.springboot.entities.Employee;
+
 
 @Repository
 @Transactional

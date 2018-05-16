@@ -5,10 +5,17 @@
 <head>
 
 <link rel="stylesheet" type="text/css"
+<<<<<<< HEAD
 	href="../webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="../${jstlCss}" rel="stylesheet" />
+=======
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<c:url value="/css/main.css" var="jstlCss" />
+<link href="${jstlCss}" rel="stylesheet" />
+>>>>>>> f6a71e749b4d66ce9cb58b77aad7b05e8732bb92
 
 </head>
 <body>
@@ -54,12 +61,22 @@
 		</form>
 	  </div>
 	</div>
+<<<<<<< HEAD
 	</div>
 	<!-- /.container -->
+=======
+<!-- /.container -->
+
+	
+>>>>>>> f6a71e749b4d66ce9cb58b77aad7b05e8732bb92
 
 	<script type="text/javascript"
 		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> f6a71e749b4d66ce9cb58b77aad7b05e8732bb92

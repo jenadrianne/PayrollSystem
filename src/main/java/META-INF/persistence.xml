@@ -3,11 +3,18 @@
 	<persistence-unit name="KanbanProject">
 		<class>com.springboot.entities.Address</class>
 		<class>com.springboot.entities.AddressPK</class>
+		<class>com.springboot.entities.OvertimePay</class>
+		<class>com.springboot.entities.ReportSalary</class>
+		<class>com.springboot.entities.SalaryPerWeek</class>
 		<class>com.springboot.entities.Employee</class>
 		<class>com.springboot.entities.Log</class>
+<<<<<<< HEAD
 		<class>com.springboot.entities.OvertimePay</class>
 		<class>com.springboot.entities.Penalty</class>
 		<class>com.springboot.entities.ReportSalary</class>
 		<class>com.springboot.entities.SalaryPerWeek</class>
+=======
+		<class>com.springboot.entities.Penalty</class>
+>>>>>>> f6a71e749b4d66ce9cb58b77aad7b05e8732bb92
 	</persistence-unit>
 </persistence>

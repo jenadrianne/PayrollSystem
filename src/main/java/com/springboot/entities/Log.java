@@ -37,7 +37,7 @@ public class Log implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="emp_id")
 	private Employee employee;
-	
+
 	//bi-directional many-to-one association to OvertimePay
 	@OneToMany(mappedBy="log")
 	private List<OvertimePay> overtimePays;

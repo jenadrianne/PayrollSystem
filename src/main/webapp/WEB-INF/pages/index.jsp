@@ -36,6 +36,7 @@
 		  </div>
 		  <div class="panel-body">
 		  	<a href="/employee/add">Create User</a>
+		  	<a href="/employee/list">Listssss User</a>
 		  </div>
 		</div>
 

@@ -14,9 +14,9 @@ public class EmployeeRepository {
 
 	public boolean addEmployee(EntityManager entityManager, Employee employee) {
 		boolean result = false;
-
+		System.out.print(employee.getFirstName()+" = "+employee.getLastName()+" = "+employee.getHourlyRate()+" kayata ");
 		entityManager.persist(employee);// insert into table
-		
+		System.out.println("EASDF");
 		return result;
 	}
 }

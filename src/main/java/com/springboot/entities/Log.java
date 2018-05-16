@@ -18,23 +18,29 @@ public class Log implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name="log_id")
 	private int logId;
+
+	@Column(name="daily_earning")
+	private double dailyEarning;
 
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
-	private Time timeIN;
+	@Column(name="time_in")
+	private Time timeIn;
 
-	private Time timeOUT;
+	@Column(name="time_out")
+	private Time timeOut;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="empID")
+	@JoinColumn(name="emp_id")
 	private Employee employee;
 
-	//bi-directional many-to-one association to Overtimepay
+	//bi-directional many-to-one association to OvertimePay
 	@OneToMany(mappedBy="log")
-	private List<Overtimepay> overtimepays;
+	private List<OvertimePay> overtimePays;
 
 	//bi-directional many-to-one association to Penalty
 	@OneToMany(mappedBy="log")
@@ -51,6 +57,14 @@ public class Log implements Serializable {
 		this.logId = logId;
 	}
 
+	public double getDailyEarning() {
+		return this.dailyEarning;
+	}
+
+	public void setDailyEarning(double dailyEarning) {
+		this.dailyEarning = dailyEarning;
+	}
+
 	public Date getDate() {
 		return this.date;
 	}
@@ -59,20 +73,20 @@ public class Log implements Serializable {
 		this.date = date;
 	}
 
-	public Time getTimeIN() {
-		return this.timeIN;
+	public Time getTimeIn() {
+		return this.timeIn;
 	}
 
-	public void setTimeIN(Time timeIN) {
-		this.timeIN = timeIN;
+	public void setTimeIn(Time timeIn) {
+		this.timeIn = timeIn;
 	}
 
-	public Time getTimeOUT() {
-		return this.timeOUT;
+	public Time getTimeOut() {
+		return this.timeOut;
 	}
 
-	public void setTimeOUT(Time timeOUT) {
-		this.timeOUT = timeOUT;
+	public void setTimeOut(Time timeOut) {
+		this.timeOut = timeOut;
 	}
 
 	public Employee getEmployee() {
@@ -83,26 +97,26 @@ public class Log implements Serializable {
 		this.employee = employee;
 	}
 
-	public List<Overtimepay> getOvertimepays() {
-		return this.overtimepays;
+	public List<OvertimePay> getOvertimePays() {
+		return this.overtimePays;
 	}
 
-	public void setOvertimepays(List<Overtimepay> overtimepays) {
-		this.overtimepays = overtimepays;
+	public void setOvertimePays(List<OvertimePay> overtimePays) {
+		this.overtimePays = overtimePays;
 	}
 
-	public Overtimepay addOvertimepay(Overtimepay overtimepay) {
-		getOvertimepays().add(overtimepay);
-		overtimepay.setLog(this);
+	public OvertimePay addOvertimePay(OvertimePay overtimePay) {
+		getOvertimePays().add(overtimePay);
+		overtimePay.setLog(this);
 
-		return overtimepay;
+		return overtimePay;
 	}
 
-	public Overtimepay removeOvertimepay(Overtimepay overtimepay) {
-		getOvertimepays().remove(overtimepay);
-		overtimepay.setLog(null);
+	public OvertimePay removeOvertimePay(OvertimePay overtimePay) {
+		getOvertimePays().remove(overtimePay);
+		overtimePay.setLog(null);
 
-		return overtimepay;
+		return overtimePay;
 	}
 
 	public List<Penalty> getPenalties() {

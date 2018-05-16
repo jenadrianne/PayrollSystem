@@ -29,8 +29,9 @@ public class EmployeeService {
 		employee.setHourlyRate(hourlyRate);
 		employee.setType(employeeType);
 		
-		employeeRepository.addEmployee(em, employee);
-
+		
+		result = employeeRepository.addEmployee(em, employee);
+		
 		return result;
 	}
 }

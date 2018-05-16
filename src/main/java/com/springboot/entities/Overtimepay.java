@@ -5,45 +5,49 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the overtimepay database table.
+ * The persistent class for the overtime_pay database table.
  * 
  */
 @Entity
-@NamedQuery(name="Overtimepay.findAll", query="SELECT o FROM Overtimepay o")
-public class Overtimepay implements Serializable {
+@Table(name="overtime_pay")
+@NamedQuery(name="OvertimePay.findAll", query="SELECT o FROM OvertimePay o")
+public class OvertimePay implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int overtimeID;
+	@Column(name="overtime_id")
+	private int overtimeId;
 
+	@Column(name="overtime_hours")
 	private double overtimeHours;
 
+	@Column(name="overtime_rate")
 	private double overtimeRate;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="empID")
+	@JoinColumn(name="emp_id")
 	private Employee employee;
 
-	//bi-directional many-to-one association to Salaryperweek
+	//bi-directional many-to-one association to SalaryPerWeek
 	@ManyToOne
-	@JoinColumn(name="salaryID")
-	private Salaryperweek salaryperweek;
+	@JoinColumn(name="salary_id")
+	private SalaryPerWeek salaryPerWeek;
 
 	//bi-directional many-to-one association to Log
 	@ManyToOne
-	@JoinColumn(name="logID")
+	@JoinColumn(name="log_id")
 	private Log log;
 
-	public Overtimepay() {
+	public OvertimePay() {
 	}
 
-	public int getOvertimeID() {
-		return this.overtimeID;
+	public int getOvertimeId() {
+		return this.overtimeId;
 	}
 
-	public void setOvertimeID(int overtimeID) {
-		this.overtimeID = overtimeID;
+	public void setOvertimeId(int overtimeId) {
+		this.overtimeId = overtimeId;
 	}
 
 	public double getOvertimeHours() {
@@ -70,12 +74,12 @@ public class Overtimepay implements Serializable {
 		this.employee = employee;
 	}
 
-	public Salaryperweek getSalaryperweek() {
-		return this.salaryperweek;
+	public SalaryPerWeek getSalaryPerWeek() {
+		return this.salaryPerWeek;
 	}
 
-	public void setSalaryperweek(Salaryperweek salaryperweek) {
-		this.salaryperweek = salaryperweek;
+	public void setSalaryPerWeek(SalaryPerWeek salaryPerWeek) {
+		this.salaryPerWeek = salaryPerWeek;
 	}
 
 	public Log getLog() {

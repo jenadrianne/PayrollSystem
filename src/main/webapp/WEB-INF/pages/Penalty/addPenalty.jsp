@@ -30,24 +30,19 @@
 
 	<div class="panel panel-default col-md-10 col-md-offset-1">
 	  <div class="panel-heading">
-	  	<h1><strong><center>Add Employees</center></strong></h1>
+	  	<h1><strong><center>Testing Penalties</center></strong></h1>
 	  </div>
 	  <div class="panel-body">
-	  	<form action="/employee/add" method="POST">
+	  	<form action="/penalty/add" method="POST">
 	  	
 		  <div class="form-group">
-		    <label for="LastName">Last Name: </label>
-		    <input type="text" class="form-control" id="LastName" name="lastName">
+		     <label for="appt-time">Choose an appointment time: </label>
+  <input id="appt-time" type="time" name="timeIn" step="2">
 		  </div>
 		  
 		  <div class="form-group">
-		    <label for="FirstName">First Name: </label>
-		    <input type="text" class="form-control" id="FirstName" name="firstName">
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="HourlyRate">Hourly Rate: </label>
-		    <input type="text" class="form-control" id="HourlyRate" name="hourlyRate">
+		    <label for="FirstName">Time Out: </label>
+		    <input type="time" class="form-control" id="timeOut" name="timeOut">
 		  </div>
 		  
 		  <button type="submit" class="btn btn-default">Submit</button>

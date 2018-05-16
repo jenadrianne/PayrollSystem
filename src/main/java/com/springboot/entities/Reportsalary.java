@@ -6,41 +6,45 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the reportsalary database table.
+ * The persistent class for the report_salary database table.
  * 
  */
 @Entity
-@NamedQuery(name="Reportsalary.findAll", query="SELECT r FROM Reportsalary r")
-public class Reportsalary implements Serializable {
+@Table(name="report_salary")
+@NamedQuery(name="ReportSalary.findAll", query="SELECT r FROM ReportSalary r")
+public class ReportSalary implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int reportID;
+	@Column(name="report_id")
+	private int reportId;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_created")
 	private Date dateCreated;
 
+	@Column(name="salary_expense")
 	private double salaryExpense;
 
-	//bi-directional many-to-one association to Salaryperweek
+	//bi-directional many-to-one association to SalaryPerWeek
 	@ManyToOne
-	@JoinColumn(name="salaryID")
-	private Salaryperweek salaryperweek;
+	@JoinColumn(name="salary_id")
+	private SalaryPerWeek salaryPerWeek;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="empID")
+	@JoinColumn(name="emp_id")
 	private Employee employee;
 
-	public Reportsalary() {
+	public ReportSalary() {
 	}
 
-	public int getReportID() {
-		return this.reportID;
+	public int getReportId() {
+		return this.reportId;
 	}
 
-	public void setReportID(int reportID) {
-		this.reportID = reportID;
+	public void setReportId(int reportId) {
+		this.reportId = reportId;
 	}
 
 	public Date getDateCreated() {
@@ -59,12 +63,12 @@ public class Reportsalary implements Serializable {
 		this.salaryExpense = salaryExpense;
 	}
 
-	public Salaryperweek getSalaryperweek() {
-		return this.salaryperweek;
+	public SalaryPerWeek getSalaryPerWeek() {
+		return this.salaryPerWeek;
 	}
 
-	public void setSalaryperweek(Salaryperweek salaryperweek) {
-		this.salaryperweek = salaryperweek;
+	public void setSalaryPerWeek(SalaryPerWeek salaryPerWeek) {
+		this.salaryPerWeek = salaryPerWeek;
 	}
 
 	public Employee getEmployee() {

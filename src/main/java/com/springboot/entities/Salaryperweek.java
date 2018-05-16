@@ -2,51 +2,67 @@ package com.springboot.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the salaryperweek database table.
+ * The persistent class for the salary_per_week database table.
  * 
  */
 @Entity
-@NamedQuery(name="Salaryperweek.findAll", query="SELECT s FROM Salaryperweek s")
-public class Salaryperweek implements Serializable {
+@Table(name="salary_per_week")
+@NamedQuery(name="SalaryPerWeek.findAll", query="SELECT s FROM SalaryPerWeek s")
+public class SalaryPerWeek implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int salaryID;
+	@Column(name="salary_id")
+	private int salaryId;
 
+	@Column(name="basic_salary")
 	private double basicSalary;
+	
+	@Column(name="date_created")
+	private Date dateCreated;
 
+	@Column(name="net_salary")
 	private double netSalary;
 
-	//bi-directional many-to-one association to Overtimepay
-	@OneToMany(mappedBy="salaryperweek")
-	private List<Overtimepay> overtimepays;
+	//bi-directional many-to-one association to OvertimePay
+	@OneToMany(mappedBy="salaryPerWeek")
+	private List<OvertimePay> overtimePays;
 
 	//bi-directional many-to-one association to Penalty
-	@OneToMany(mappedBy="salaryperweek")
+	@OneToMany(mappedBy="salaryPerWeek")
 	private List<Penalty> penalties;
 
-	//bi-directional many-to-one association to Reportsalary
-	@OneToMany(mappedBy="salaryperweek")
-	private List<Reportsalary> reportsalaries;
+	//bi-directional many-to-one association to ReportSalary
+	@OneToMany(mappedBy="salaryPerWeek")
+	private List<ReportSalary> reportSalaries;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="empID")
+	@JoinColumn(name="emp_id")
 	private Employee employee;
 
-	public Salaryperweek() {
+	public SalaryPerWeek() {
 	}
 
-	public int getSalaryID() {
-		return this.salaryID;
+	public int getSalaryId() {
+		return this.salaryId;
 	}
-
-	public void setSalaryID(int salaryID) {
-		this.salaryID = salaryID;
+	
+	public Date getDateCreated(){
+		return this.dateCreated;
+	}
+	public void setDateCreated(Date date){
+		this.dateCreated = date;
+	}
+	
+	public void setSalaryId(int salaryId) {
+		this.salaryId = salaryId;
 	}
 
 	public double getBasicSalary() {
@@ -65,26 +81,26 @@ public class Salaryperweek implements Serializable {
 		this.netSalary = netSalary;
 	}
 
-	public List<Overtimepay> getOvertimepays() {
-		return this.overtimepays;
+	public List<OvertimePay> getOvertimePays() {
+		return this.overtimePays;
 	}
 
-	public void setOvertimepays(List<Overtimepay> overtimepays) {
-		this.overtimepays = overtimepays;
+	public void setOvertimePays(List<OvertimePay> overtimePays) {
+		this.overtimePays = overtimePays;
 	}
 
-	public Overtimepay addOvertimepay(Overtimepay overtimepay) {
-		getOvertimepays().add(overtimepay);
-		overtimepay.setSalaryperweek(this);
+	public OvertimePay addOvertimePay(OvertimePay overtimePay) {
+		getOvertimePays().add(overtimePay);
+		overtimePay.setSalaryPerWeek(this);
 
-		return overtimepay;
+		return overtimePay;
 	}
 
-	public Overtimepay removeOvertimepay(Overtimepay overtimepay) {
-		getOvertimepays().remove(overtimepay);
-		overtimepay.setSalaryperweek(null);
+	public OvertimePay removeOvertimePay(OvertimePay overtimePay) {
+		getOvertimePays().remove(overtimePay);
+		overtimePay.setSalaryPerWeek(null);
 
-		return overtimepay;
+		return overtimePay;
 	}
 
 	public List<Penalty> getPenalties() {
@@ -97,38 +113,38 @@ public class Salaryperweek implements Serializable {
 
 	public Penalty addPenalty(Penalty penalty) {
 		getPenalties().add(penalty);
-		penalty.setSalaryperweek(this);
+		penalty.setSalaryPerWeek(this);
 
 		return penalty;
 	}
 
 	public Penalty removePenalty(Penalty penalty) {
 		getPenalties().remove(penalty);
-		penalty.setSalaryperweek(null);
+		penalty.setSalaryPerWeek(null);
 
 		return penalty;
 	}
 
-	public List<Reportsalary> getReportsalaries() {
-		return this.reportsalaries;
+	public List<ReportSalary> getReportSalaries() {
+		return this.reportSalaries;
 	}
 
-	public void setReportsalaries(List<Reportsalary> reportsalaries) {
-		this.reportsalaries = reportsalaries;
+	public void setReportSalaries(List<ReportSalary> reportSalaries) {
+		this.reportSalaries = reportSalaries;
 	}
 
-	public Reportsalary addReportsalary(Reportsalary reportsalary) {
-		getReportsalaries().add(reportsalary);
-		reportsalary.setSalaryperweek(this);
+	public ReportSalary addReportSalary(ReportSalary reportSalary) {
+		getReportSalaries().add(reportSalary);
+		reportSalary.setSalaryPerWeek(this);
 
-		return reportsalary;
+		return reportSalary;
 	}
 
-	public Reportsalary removeReportsalary(Reportsalary reportsalary) {
-		getReportsalaries().remove(reportsalary);
-		reportsalary.setSalaryperweek(null);
+	public ReportSalary removeReportSalary(ReportSalary reportSalary) {
+		getReportSalaries().remove(reportSalary);
+		reportSalary.setSalaryPerWeek(null);
 
-		return reportsalary;
+		return reportSalary;
 	}
 
 	public Employee getEmployee() {

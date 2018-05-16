@@ -21,113 +21,118 @@ USE `payrollsystem`;
 DROP TABLE IF EXISTS `employee`;
 
 CREATE TABLE `employee` (
-  `EmpID` int(11) NOT NULL AUTO_INCREMENT,
-  `FirstName` varchar(255) DEFAULT NULL,
-  `LastName` varchar(255) DEFAULT NULL,
-  `hourlyRate` double NOT NULL,
+  `emp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `hourly_rate` double NOT NULL,
   `type` enum('Admin','Regular') DEFAULT NULL,
-  PRIMARY KEY (`EmpID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`emp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `employee` */
+
+insert  into `employee`(`emp_id`,`first_name`,`last_name`,`hourly_rate`,`type`) values (1,'John','Doe',10,'Regular'),(2,'admin','admin',20,'Admin'),(3,'Marie','Marie',10,'Regular'),(4,'asd','asd',23.3223,'Regular'),(5,'tes','tes',222,'Regular');
 
 /*Table structure for table `logs` */
 
 DROP TABLE IF EXISTS `logs`;
 
 CREATE TABLE `logs` (
-  `logId` int(11) NOT NULL AUTO_INCREMENT,
-  `empID` int(11) DEFAULT NULL,
-  `timeIN` time DEFAULT NULL,
-  `timeOUT` time DEFAULT NULL,
+  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_id` int(11) DEFAULT NULL,
+  `time_in` time DEFAULT NULL,
+  `time_out` time DEFAULT NULL,
   `date` date DEFAULT NULL,
-  PRIMARY KEY (`logId`),
-  KEY `empID` (`empID`),
-  CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`EmpID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `daily_earning` double DEFAULT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `empID` (`emp_id`),
+  CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `logs` */
 
-/*Table structure for table `overtimepay` */
+insert  into `logs`(`log_id`,`emp_id`,`time_in`,`time_out`,`date`,`daily_earning`) values (1,1,'08:00:00','05:00:00','2018-05-14',100),(2,1,'06:00:00','03:00:00','2018-05-15',100),(3,1,'08:00:00','08:00:00','2018-05-16',100),(4,1,'08:00:00','08:00:00','2018-05-17',100),(5,1,'08:00:00','08:00:00','2018-05-18',100),(6,1,'08:00:00','08:00:00','2018-05-21',100);
 
-DROP TABLE IF EXISTS `overtimepay`;
+/*Table structure for table `overtime_pay` */
 
-CREATE TABLE `overtimepay` (
-  `overtimeID` int(11) NOT NULL AUTO_INCREMENT,
-  `empID` int(11) DEFAULT NULL,
-  `salaryID` int(11) DEFAULT NULL,
-  `overtimeHours` double DEFAULT NULL,
-  `overtimeRate` double DEFAULT NULL,
-  `logID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`overtimeID`),
-  KEY `empID` (`empID`),
-  KEY `salaryID` (`salaryID`),
-  KEY `logID` (`logID`),
-  CONSTRAINT `overtimepay_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`EmpID`),
-  CONSTRAINT `overtimepay_ibfk_2` FOREIGN KEY (`salaryID`) REFERENCES `salaryperweek` (`salaryID`),
-  CONSTRAINT `overtimepay_ibfk_3` FOREIGN KEY (`logID`) REFERENCES `logs` (`logId`)
+DROP TABLE IF EXISTS `overtime_pay`;
+
+CREATE TABLE `overtime_pay` (
+  `overtime_id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_id` int(11) DEFAULT NULL,
+  `salary_id` int(11) DEFAULT NULL,
+  `overtime_hours` double DEFAULT NULL,
+  `overtime_rate` double DEFAULT NULL,
+  `log_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`overtime_id`),
+  KEY `empID` (`emp_id`),
+  KEY `salaryID` (`salary_id`),
+  KEY `logID` (`log_id`),
+  CONSTRAINT `overtime_pay_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`),
+  CONSTRAINT `overtime_pay_ibfk_2` FOREIGN KEY (`salary_id`) REFERENCES `salary_per_week` (`salary_id`),
+  CONSTRAINT `overtime_pay_ibfk_3` FOREIGN KEY (`log_id`) REFERENCES `logs` (`log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `overtimepay` */
+/*Data for the table `overtime_pay` */
 
 /*Table structure for table `penalty` */
 
 DROP TABLE IF EXISTS `penalty`;
 
 CREATE TABLE `penalty` (
-  `penaltyiD` int(11) NOT NULL AUTO_INCREMENT,
-  `empID` int(11) DEFAULT NULL,
-  `salaryID` int(11) DEFAULT NULL,
-  `totalNoLate` double DEFAULT NULL,
-  `totalNoAbsent` double DEFAULT NULL,
-  `totalNoUnderTime` double DEFAULT NULL,
-  `penaltyRate` double DEFAULT NULL,
-  `logID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`penaltyiD`),
-  KEY `empID` (`empID`),
-  KEY `salaryID` (`salaryID`),
-  KEY `logID` (`logID`),
-  CONSTRAINT `penalty_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`EmpID`),
-  CONSTRAINT `penalty_ibfk_2` FOREIGN KEY (`salaryID`) REFERENCES `salaryperweek` (`salaryID`),
-  CONSTRAINT `penalty_ibfk_3` FOREIGN KEY (`logID`) REFERENCES `logs` (`logId`)
+  `penalty_id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_id` int(11) DEFAULT NULL,
+  `salary_id` int(11) DEFAULT NULL,
+  `total_no_late` double DEFAULT NULL,
+  `total_no_absent` double DEFAULT NULL,
+  `total_no_undertime` double DEFAULT NULL,
+  `penalty_rate` double DEFAULT NULL,
+  `log_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`penalty_id`),
+  KEY `empID` (`emp_id`),
+  KEY `salaryID` (`salary_id`),
+  KEY `logID` (`log_id`),
+  CONSTRAINT `penalty_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`),
+  CONSTRAINT `penalty_ibfk_2` FOREIGN KEY (`salary_id`) REFERENCES `salary_per_week` (`salary_id`),
+  CONSTRAINT `penalty_ibfk_3` FOREIGN KEY (`log_id`) REFERENCES `logs` (`log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `penalty` */
 
-/*Table structure for table `reportsalary` */
+/*Table structure for table `report_salary` */
 
-DROP TABLE IF EXISTS `reportsalary`;
+DROP TABLE IF EXISTS `report_salary`;
 
-CREATE TABLE `reportsalary` (
-  `reportID` int(11) NOT NULL AUTO_INCREMENT,
-  `salaryID` int(11) DEFAULT NULL,
-  `empID` int(11) DEFAULT NULL,
-  `salaryExpense` double DEFAULT NULL,
-  `dateCreated` datetime DEFAULT NULL,
-  PRIMARY KEY (`reportID`),
-  KEY `salaryID` (`salaryID`),
-  KEY `empID` (`empID`),
-  CONSTRAINT `reportsalary_ibfk_1` FOREIGN KEY (`salaryID`) REFERENCES `salaryperweek` (`salaryID`),
-  CONSTRAINT `reportsalary_ibfk_2` FOREIGN KEY (`empID`) REFERENCES `employee` (`EmpID`)
+CREATE TABLE `report_salary` (
+  `report_id` int(11) NOT NULL AUTO_INCREMENT,
+  `salary_id` int(11) DEFAULT NULL,
+  `emp_id` int(11) DEFAULT NULL,
+  `salary_expense` double DEFAULT NULL,
+  `date_created` datetime DEFAULT NULL,
+  PRIMARY KEY (`report_id`),
+  KEY `salaryID` (`salary_id`),
+  KEY `empID` (`emp_id`),
+  CONSTRAINT `report_salary_ibfk_1` FOREIGN KEY (`salary_id`) REFERENCES `salary_per_week` (`salary_id`),
+  CONSTRAINT `report_salary_ibfk_2` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `reportsalary` */
+/*Data for the table `report_salary` */
 
-/*Table structure for table `salaryperweek` */
+/*Table structure for table `salary_per_week` */
 
-DROP TABLE IF EXISTS `salaryperweek`;
+DROP TABLE IF EXISTS `salary_per_week`;
 
-CREATE TABLE `salaryperweek` (
-  `salaryID` int(11) NOT NULL AUTO_INCREMENT,
-  `empID` int(11) DEFAULT NULL,
-  `basicSalary` double DEFAULT NULL,
-  `netSalary` double DEFAULT NULL,
-  PRIMARY KEY (`salaryID`),
-  KEY `empID` (`empID`),
-  CONSTRAINT `salaryperweek_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`EmpID`)
+CREATE TABLE `salary_per_week` (
+  `salary_id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_id` int(11) DEFAULT NULL,
+  `basic_salary` double DEFAULT NULL,
+  `net_salary` double DEFAULT NULL,
+  PRIMARY KEY (`salary_id`),
+  KEY `empID` (`emp_id`),
+  CONSTRAINT `salary_per_week_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `salaryperweek` */
+/*Data for the table `salary_per_week` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

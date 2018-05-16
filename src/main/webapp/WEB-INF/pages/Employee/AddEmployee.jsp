@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html lang="en">
 <head>
 
 <link rel="stylesheet" type="text/css"
 	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Employee</title>
+
 </head>
 <body>
 	<div class="panel panel-default">
@@ -25,24 +25,26 @@
 		  </div>
 		  
 		  <div class="form-group">
-		    <label for="LastName">First Name: </label>
-		    <input type="text" class="form-control" id="LastName" name="firstName">
+		    <label for="FirstName">First Name: </label>
+		    <input type="text" class="form-control" id="FirstName" name="firstName">
 		  </div>
 		  
 		  <div class="form-group">
-		    <label for="LastName">Hourly Rate: </label>
-		    <input type="text" class="form-control" id="LastName" name="hourlyRate">
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="LastName">Employee Type: </label>
-		    <label class="checkbox-inline"><input type="checkbox" value="0" name="employeeType">Admin</label>
-			<label class="checkbox-inline"><input type="checkbox" value="1" name="employeeType">Regular</label>
+		    <label for="HourlyRate">Hourly Rate: </label>
+		    <input type="text" class="form-control" id="HourlyRate" name="hourlyRate">
 		  </div>
 		  
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	  </div>
 	</div>
+<!-- /.container -->
+
+	
+
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

@@ -1,5 +1,7 @@
 package com.springboot.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -29,8 +31,31 @@ public class EmployeeService {
 		employee.setHourlyRate(hourlyRate);
 		employee.setType(employeeType);
 		
-		employeeRepository.addEmployee(em, employee);
-
+		
+		result = employeeRepository.addEmployee(em, employee);
+		
 		return result;
+	}
+	
+	public List<Employee> getEmployee(){
+		return employeeRepository.getEmployees(em);
+	}
+	
+	public Employee getEmployeeById(String empID){
+		return employeeRepository.getEmployeeById(em, empID);
+	}
+	
+	public void updateEmployee(String empID, String lastName, String firstName, double hourlyRate, String employeeType){
+		Employee employeeToUpdate = employeeRepository.getEmployeeById(em, empID);
+		employeeToUpdate.setLastName(lastName);
+		employeeToUpdate.setFirstName(firstName);
+		employeeToUpdate.setHourlyRate(hourlyRate);
+		employeeToUpdate.setType(employeeType);
+		
+		employeeRepository.addEmployee(em, employeeToUpdate);
+	}
+	
+	public void removeEmployee(String[] empID){
+		employeeRepository.removeEmployee(em, empID);
 	}
 }
